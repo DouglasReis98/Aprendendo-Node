@@ -1,0 +1,26 @@
+body{
+    background-color: #00a2ff;
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;    
+    color: #fff;
+}
+
+h2, a h3{
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+a h3:hover{
+    color: yellow;
+}
+
+p{
+    font-size: 2em;
+    width: 50%;
+    margin: 0 auto;
+}
