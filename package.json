@@ -11,6 +11,7 @@
     "inquirer": "^8.1.0",
     "mongoose": "^7.5.0",
     "mysql2": "^3.4.1",
+    "nodemon": "^3.0.3",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.32.1"
@@ -18,7 +19,6 @@
   "name": "aprendendonode",
   "version": "1.0.0",
   "main": "05 - HTML e Node.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./07 - Handlebars/index.js localhost 3000"

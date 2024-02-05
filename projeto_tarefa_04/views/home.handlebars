@@ -1,0 +1,11 @@
+<h1>
+    Projeto Tarefa 04
+</h1>
+
+<ul>
+    {{#each produtos}}
+    {{#with this}}
+    <li>{{nome}}: {{preco}} - <a href="/produtos/{{this.id}}">Ver Mais</a></li>
+    {{/with}}
+    {{/each}}
+</ul>
