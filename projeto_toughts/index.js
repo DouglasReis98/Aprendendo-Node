@@ -61,7 +61,7 @@ app.use(express.static('public'))
 app.use((req, res, next) => {
     console.log("UserID " + req.session.userid);
 
-    if (req.session.useid) {
+    if (req.session.userid) {
         res.locals.session = req.session    
     }
 
