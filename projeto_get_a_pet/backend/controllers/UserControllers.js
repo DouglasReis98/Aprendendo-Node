@@ -146,13 +146,15 @@ module.exports = class UserController {
   static async editUser(req, res) {
     const id = req.params.id;
 
-    const { name, email, phone, password, confirmPassword } = req.body;
-
-    let image = "";
-
     // check if user exists
     const token = getToken(req);
     const user = await getUserByToken(token);
+
+    const { name, email, phone, password, confirmPassword } = req.body;
+
+    if (req.file) {
+      user.image = req.file.filename
+    }
 
     // validations
 
@@ -187,6 +189,9 @@ module.exports = class UserController {
       return;
     }
 
+    user.phone = phone;
+
+/*
     if (!password) {
       res.status(422).json({ message: "A senha é obrigatória!" });
       return;
@@ -209,7 +214,7 @@ module.exports = class UserController {
 
       user.password = passwordHash;
     }
-
+*/
     try {
       // returns user updated data
       const updatedUser = await User.findByIdAndUpdate(
