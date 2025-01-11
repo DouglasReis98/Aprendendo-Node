@@ -19,7 +19,6 @@ const Register = () => {
     e.preventDefault();
     // enviar o usuário para o banco
     register(user)
-    console.log(user);
   }
 
   return (
