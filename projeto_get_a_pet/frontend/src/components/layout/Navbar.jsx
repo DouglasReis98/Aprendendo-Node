@@ -23,7 +23,12 @@ const Navbar = () => {
         </li>
 
         {authenticated ? (
-          <p><li onClick={logout}>Sair</li></p>
+          <>
+          <li>
+              <Link to="/user/profile">Perfil</Link>
+            </li>
+          <li onClick={logout}>Sair</li>
+          </>
         ) : (
           <>
             <li>
