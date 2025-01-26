@@ -1,5 +1,5 @@
 import api from "../../../utils/api";
-
+import 'dotenv'
 import { useState, useEffect } from "react";
 
 import styles from "./Profile.module.css";
@@ -8,10 +8,11 @@ import formStyles from "../../form/Form.module.css";
 import Input from "../../form/Input";
 
 import useFlashMessage from "../../../hooks/useFlashMessages";
+import RoundedImage from "../../layout/RoundedImage";
 
 function Profile() {
   const [user, setUser] = useState({});
-  const [preview, setPreview] = useState()
+  const [preview, setPreview] = useState();
   const [token] = useState(localStorage.getItem("token") || "");
   const { setFlashMessage } = useFlashMessage();
 
@@ -27,7 +28,7 @@ function Profile() {
       });
   }, [token]);
   function onFileChange(e) {
-    setPreview(e.target.files[0])
+    setPreview(e.target.files[0]);
     setUser({ ...user, [e.target.name]: e.target.files[0] });
   }
 
@@ -68,12 +69,13 @@ function Profile() {
         <h1>Perfil</h1>
         <p>
           {(user.image || preview) && (
-            <img
+            <RoundedImage
               src={
                 preview
                   ? URL.createObjectURL(preview)
-                  : `${process.env.REACT_APP_API}/images/users/${user.image}`
-              }
+                  : `http://localhost:5000/images/users/${user.image}`
+                  //: `${process.env.REACT_APP_API}/images/users/${user.image}`
+                }
               alt={user.name}
             />
           )}
@@ -84,7 +86,7 @@ function Profile() {
         <Input
           text="Imagem"
           type="file"
-          name="imagem"
+          name="image"
           handleOnChange={onFileChange}
         />
         <Input
