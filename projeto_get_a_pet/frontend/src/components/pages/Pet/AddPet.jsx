@@ -31,24 +31,23 @@ const AddPet = () => {
 
     const data = await api
       .post("pets/create", formData, {
-        Authorization: `Bearer ${JSON.parse(token)}`,
-        'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${JSON.parse(token)}`,
+          'Content-Type': 'multipart/form-data'
       })
       .then((response) => {
-        console.log("Erro1"+response)
+        console.log("Erro1" + response);
         return response.data;
       })
       .catch((err) => {
-        msgType = "error";        
-        console.log("Erro2"+err)
+        msgType = "error";
+        console.log("Erro2" + err);
         return err.response.data;
-
       });
 
     setFlashMessage(data.message, msgType);
 
-    if (msgType !== 'error') {
-         navigate("/pets/mypets");
+    if (msgType !== "error") {
+      navigate("/pets/mypets");
     }
   }
   return (
