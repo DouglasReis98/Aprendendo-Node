@@ -11,12 +11,12 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
   const colors = ["Branco", "Preto", "Cinza", "Caramelo", "Mesclado"];
 
   function onFileChange(e) {
-    setPreview(Array.from(e.target.files))
+    setPreview(Array.from(e.target.files));
     setPet({ ...pet, images: [...e.target.files] });
   }
 
   function handleChange(e) {
-    setPet({ ...pet, [e.target.name]: [e.target.value] });
+    setPet({ ...pet, [e.target.name]: e.target.value });
   }
 
   function handleColor(e) {
@@ -24,8 +24,7 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
   }
 
   function submit(e) {
-    e.preventDefault();    
-    console.log(pet);
+    e.preventDefault();
     handleSubmit(pet);
   }
 
@@ -43,8 +42,8 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
           : pet.images &&
             pet.images.map((image, index) => (
               <img
-               // src={`${process.env.REACT_APP_API}/images/pets/${image}`}
-               src={`http://localhost:5173/images/pets/${image}`}
+                // src={`${process.env.REACT_APP_API}/images/pets/${image}`}
+                src={`http://localhost:5173/images/pets/${image}`}
                 alt={pet.name}
                 key={`${pet.name} + ${index}`}
               />

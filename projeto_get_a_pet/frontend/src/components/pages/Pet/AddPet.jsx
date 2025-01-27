@@ -10,7 +10,7 @@ import useFlashMessage from "../../../hooks/useFlashMessages";
 import PetForm from "../../form/PetForm";
 
 const AddPet = () => {
-  const { token } = useState(localStorage.getItem("token") || "");
+  const [token] = useState(localStorage.getItem("token") || "");
   const { setFlashMessage } = useFlashMessage();
   const navigate = useNavigate();
 
@@ -35,12 +35,10 @@ const AddPet = () => {
           'Content-Type': 'multipart/form-data'
       })
       .then((response) => {
-        console.log("Erro1" + response);
         return response.data;
       })
       .catch((err) => {
         msgType = "error";
-        console.log("Erro2" + err);
         return err.response.data;
       });
 
