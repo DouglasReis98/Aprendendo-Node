@@ -152,7 +152,7 @@ module.exports = class PetController {
     const token = getToken(req);
     const user = await getUserByToken(token);
 
-    if (pet.user._id.toString() !== user._id.toString()) {
+    if (pet.user._id.toString() != user._id.toString()) {
       res.status(422).json({
         message:
           "Houve um problema em processar a sua solicitação! Tente novamente mais tarde!",
@@ -160,7 +160,7 @@ module.exports = class PetController {
       return;
     }
 
-    await Pet.findByIdAndRemove(id);
+    await Pet.findByIdAndDelete(id);
 
     res.status(200).json({ message: "Pet removido com sucesso!" });
   }
