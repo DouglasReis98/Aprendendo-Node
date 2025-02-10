@@ -43,7 +43,7 @@ const PetForm = ({ handleSubmit, petData, btnText }) => {
             pet.images.map((image, index) => (
               <img
                 // src={`${process.env.REACT_APP_API}/images/pets/${image}`}
-                src={`http://localhost:5173/images/pets/${image}`}
+                src={`http://localhost:5000/images/pets/${image}`}
                 alt={pet.name}
                 key={`${pet.name} + ${index}`}
               />

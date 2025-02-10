@@ -8,6 +8,7 @@ import Container from "./components/layout/Container";
 import Message from "./components/layout/Message";
 import MyPets from "./components/pages/Pet/MyPets";
 import AddPet from "./components/pages/Pet/AddPet";
+import EditPet from "./components/pages/Pet/EditPet";
 
 /* Pages */
 import Login from "./components/pages/Auth/Login";
@@ -31,6 +32,7 @@ function App() {
             <Route path="/user/profile" element={<Profile />} />
             <Route path="/pet/mypets" element={<MyPets />} />
             <Route path="/pet/add" element={<AddPet />} />
+            <Route path="/pet/edit/:id" element={<EditPet />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </Container>

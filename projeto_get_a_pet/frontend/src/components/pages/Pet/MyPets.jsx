@@ -38,7 +38,7 @@ function MyPets() {
         },
       })
       .then((response) => {
-        const updatedPets = pets.filter((pet) => pet._id != id);
+        const updatedPets = pets.filter((pet) => pet._id !== id);
         setPets(updatedPets);
         return response.data;
       })
@@ -75,7 +75,7 @@ function MyPets() {
                         Concluir adoção
                       </button>
                     )}
-                    <Link to="/">Editar</Link>
+                    <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
                     <button onClick={() => {removePet(pet._id)}}>Excluir</button>
                   </>
                 ) : (

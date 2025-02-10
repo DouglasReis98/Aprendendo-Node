@@ -224,10 +224,7 @@ module.exports = class PetController {
       updatedData.color = color;
     }
 
-    if (images.length === 0) {
-      res.status(422).json({ message: "A imagem é obrigatória!" });
-      return;
-    } else {
+    if (images.length > 0) {
       updatedData.images = [];
       images.map((image) => {
         updatedData.images.push(image.filename);
@@ -240,15 +237,14 @@ module.exports = class PetController {
   }
 
   static async schedule(req, res) {
-    
-    const id = req.params.id
+    const id = req.params.id;
 
     // check if exists
-    const pet = await Pet.findOne({ _id: id })
+    const pet = await Pet.findOne({ _id: id });
 
     if (!pet) {
-      res.status(404).json({ message: 'Pet não encontrado!' })
-      return
+      res.status(404).json({ message: "Pet não encontrado!" });
+      return;
     }
 
     // check if user registered the pet
@@ -257,18 +253,17 @@ module.exports = class PetController {
 
     if (pet.user._id.equals(user._id)) {
       res.status(422).json({
-        message:
-          "Você não pode agendar uma visita ao seu próprio Pet!",
+        message: "Você não pode agendar uma visita ao seu próprio Pet!",
       });
       return;
     }
 
     // check if user has already scheduled a visit
-    if(pet.adopter){
-      if(pet.adopter._id.equals(user._id)){
+    if (pet.adopter) {
+      if (pet.adopter._id.equals(user._id)) {
         res.status(422).json({
-          message: "Você já agendou uma visita para este Pet!"
-        })
+          message: "Você já agendou uma visita para este Pet!",
+        });
         return;
       }
     }
@@ -277,20 +272,18 @@ module.exports = class PetController {
     pet.adopter = {
       _id: user._id,
       name: user.name,
-      image: user.image
-    }
+      image: user.image,
+    };
 
-    await Pet.findByIdAndUpdate(id, pet)
+    await Pet.findByIdAndUpdate(id, pet);
 
     res.status(200).json({
-      message: `A visita foi agendada com sucesso, entre em contato com ${pet.user.name} pelo telefone ${pet.user.phone}!`
-    })
-
+      message: `A visita foi agendada com sucesso, entre em contato com ${pet.user.name} pelo telefone ${pet.user.phone}!`,
+    });
   }
 
-  static async concludeAdoption(req, res){
-
-    const id = req.params.id
+  static async concludeAdoption(req, res) {
+    const id = req.params.id;
 
     // check if pet exists
     const pet = await Pet.findOne({ _id: id });
@@ -312,12 +305,12 @@ module.exports = class PetController {
       return;
     }
 
-    pet.available = false
+    pet.available = false;
 
-    await Pet.findByIdAndUpdate(id, pet)
+    await Pet.findByIdAndUpdate(id, pet);
 
     res.status(200).json({
-      message: "Parabéns! O ciclo de adoção foi finalizado com sucesso!"
-    })
+      message: "Parabéns! O ciclo de adoção foi finalizado com sucesso!",
+    });
   }
 };
