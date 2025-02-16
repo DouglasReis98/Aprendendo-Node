@@ -73,7 +73,7 @@ function Profile() {
               src={
                 preview
                   ? URL.createObjectURL(preview)
-                  : `http://localhost:5000/images/users/${user.image}`
+                  : `${import.meta.env.VITE_REACT_APP_API}images/users/${user.image}`
                   //: `${process.env.REACT_APP_API}/images/users/${user.image}`
                 }
               alt={user.name}

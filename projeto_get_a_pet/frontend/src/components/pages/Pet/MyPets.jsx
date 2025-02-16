@@ -62,7 +62,7 @@ function MyPets() {
           pets.map((pet) => (
             <div className={styles.petlist_row} key={pet._id}>
               <RoundedImage
-                src={`http://localhost:5000/images/pets/${pet.images[0]}`}
+                src={`${import.meta.env.VITE_REACT_APP_API}images/pets/${pet.images[0]}`}
                 alt={pet.name}
                 width="px75"
               />
