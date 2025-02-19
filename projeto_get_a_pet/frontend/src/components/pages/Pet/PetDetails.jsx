@@ -33,14 +33,14 @@ function PetDetails() {
                     <p>Se tiver interesse, marque uma visita para conhecê-lo!</p>
                 </div>
                 <div>
-                    {pet.images.map((image, index) => {
+                    {pet.images.map((image, index) => (
                       <img 
                         src={`${import.meta.env.VITE_REACT_APP_API}images/pets/${image}`}
                         alt={pet.name}
                         key={index} 
                         />
                         
-                    })}
+                    ))}
                 </div>
                 <p>
                     <span className='bold'>Peso:</span> {pet.weight}kg
