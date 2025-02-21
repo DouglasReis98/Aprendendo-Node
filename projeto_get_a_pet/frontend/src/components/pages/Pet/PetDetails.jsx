@@ -21,18 +21,34 @@ function PetDetails() {
         })
     }, [id])
 
+    async function schedule() {
+        
+        let msgType = 'success'
+
+        const data = await api.patch(`pets/schedule/${pet._id}`, {
+            Authorization: `Bearer ${JSON.parse(token)}`
+        }).then((response) => {
+            return response.data
+        }).catch((err) => {
+            msgType = 'error'
+            return err.response.data
+        })
+
+        setFlashMessage(data.message, msgType)
+
+    }
 
   return (
     <>
         {pet.name && (
-            <section>
-                <div>
+            <section className={styles.pet_details_container}>
+                <div className={styles.pet_details_header}>
                     <h1>
                         Conhecendo o Pet: {pet.name}
                     </h1>
                     <p>Se tiver interesse, marque uma visita para conhecê-lo!</p>
                 </div>
-                <div>
+                <div className={styles.pet_images}>
                     {pet.images.map((image, index) => (
                       <img 
                         src={`${import.meta.env.VITE_REACT_APP_API}images/pets/${image}`}
@@ -46,10 +62,10 @@ function PetDetails() {
                     <span className='bold'>Peso:</span> {pet.weight}kg
                 </p>
                 <p>
-                    <span className='bold'>Idade:</span> {pet.age}anos
+                    <span className='bold'>Idade:</span> {pet.age} anos
                 </p>
                 {token ? (
-                    <button>Solicitar uma visita!</button>
+                    <button onClick={schedule}>Solicitar uma visita!</button>
                 ) : (
                     <p>Você precisa <Link to="/register">criar uma conta</Link> para solicitar a visita!</p>
                 )}
